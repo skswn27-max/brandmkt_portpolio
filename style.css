@@ -421,9 +421,17 @@ section {
     margin-bottom: 40px;
 }
 
+.media-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
 .project-media .instagram-media {
     background: var(--bg-card) !important;
     border-radius: 12px !important;
+    flex: 1;
+    min-width: 280px;
 }
 
 .project-media iframe {
