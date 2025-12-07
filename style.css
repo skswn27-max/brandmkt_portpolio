@@ -385,7 +385,9 @@ section {
 
 .project-meta {
     display: flex;
-    gap: 24px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
 }
 
 .project-category {
@@ -399,6 +401,13 @@ section {
     font-size: 0.75rem;
     color: var(--text-gray);
     letter-spacing: 0.05em;
+}
+
+.project-contribution {
+    font-size: 0.7rem;
+    color: var(--accent-purple-light);
+    letter-spacing: 0.05em;
+    margin-top: 4px;
 }
 
 .project-name {
@@ -445,6 +454,11 @@ section {
     gap: 24px;
 }
 
+/* 역할 카드는 전체 너비로 표시 */
+.detail-card.role {
+    grid-column: 1 / -1;
+}
+
 .detail-card {
     padding: 28px;
     background: var(--bg-card);
@@ -479,6 +493,10 @@ section {
 
 .detail-card.insight .detail-label {
     color: var(--insight-color);
+}
+
+.detail-card.role .detail-label {
+    color: var(--accent-purple);
 }
 
 .detail-card ul {
@@ -800,7 +818,7 @@ section {
     }
 
     .project-meta {
-        flex-direction: column;
+        align-items: flex-start;
         gap: 4px;
     }
 
