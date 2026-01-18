@@ -524,6 +524,45 @@ section {
     flex-wrap: wrap;
 }
 
+.media-item {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.media-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.media-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.media-item.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 300px;
+    background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.media-item.placeholder span:first-child {
+    font-size: 3rem;
+}
+
 .project-media .instagram-media {
     background: var(--bg-card) !important;
     border-radius: var(--radius-md) !important;
@@ -1025,4 +1064,48 @@ section {
     .detail-card {
         padding: 20px;
     }
+}
+
+/* =============================================
+   HTML 다운로드 버튼
+   ============================================= */
+.download-section {
+    margin-top: 48px;
+    text-align: center;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--kakao-yellow);
+    color: var(--kakao-black);
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    background: #f5dc00;
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+.download-btn svg {
+    flex-shrink: 0;
+}
+
+.download-desc {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
