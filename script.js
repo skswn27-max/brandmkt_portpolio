@@ -32,10 +32,30 @@ window.addEventListener('scroll', () => {
 });
 
 // 인스타그램 임베드 렌더링 보장
-window.addEventListener('load', () => {
+const processInstagramEmbeds = () => {
     if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
         window.instgrm.Embeds.process();
+        return true;
     }
+    return false;
+};
+
+const ensureInstagramEmbeds = () => {
+    if (processInstagramEmbeds()) return;
+    const intervalId = setInterval(() => {
+        if (processInstagramEmbeds()) {
+            clearInterval(intervalId);
+        }
+    }, 400);
+    setTimeout(() => clearInterval(intervalId), 8000);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const instagramScript = document.querySelector('script[data-instgrm-embed]');
+    if (instagramScript) {
+        instagramScript.addEventListener('load', ensureInstagramEmbeds, { once: true });
+    }
+    ensureInstagramEmbeds();
 });
 
 // 스크롤 애니메이션 (Intersection Observer)
