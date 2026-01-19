@@ -41,13 +41,25 @@ const processInstagramEmbeds = () => {
 };
 
 const ensureInstagramEmbeds = () => {
+    // 즉시 시도
     if (processInstagramEmbeds()) return;
+    
+    // 반복 시도 (더 자주, 더 오래)
+    let attempts = 0;
+    const maxAttempts = 30;
     const intervalId = setInterval(() => {
-        if (processInstagramEmbeds()) {
+        attempts++;
+        if (processInstagramEmbeds() || attempts >= maxAttempts) {
             clearInterval(intervalId);
         }
-    }, 400);
-    setTimeout(() => clearInterval(intervalId), 8000);
+    }, 300);
+    
+    // 페이지 로드 완료 후 추가 시도
+    window.addEventListener('load', () => {
+        setTimeout(processInstagramEmbeds, 500);
+        setTimeout(processInstagramEmbeds, 1500);
+        setTimeout(processInstagramEmbeds, 3000);
+    });
 };
 
 document.addEventListener('DOMContentLoaded', () => {
