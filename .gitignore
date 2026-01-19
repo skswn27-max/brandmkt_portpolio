@@ -1,5 +1,6 @@
 BM_portpolio/
-
-
-BM_portpolio/
 venv/
+*.pptx
+~$*
+*.pyc
+__pycache__/

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Maker : 이난주 | IMC 브랜드 마케터 포트폴리오</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+/* =============================================
+   Brand Maker 포트폴리오 - Kakao-ish Theme (Light)
+   ============================================= */
+
+:root {
+    --kakao-yellow: #FEE500;
+    --kakao-black: #191919;
+    --bg: #ffffff;
+    --bg-subtle: #f7f7f7;
+    --bg-card: #ffffff;
+    --bg-hover: #fafafa;
+    --text: #191919;
+    --text-sub: #666666;
+    --text-muted: #8b8b8b;
+    --border: rgba(0, 0, 0, 0.08);
+    --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.10);
+    --problem-color: #e11d48;
+    --solution-color: #2563eb;
+    --result-color: #16a34a;
+    --insight-color: #d97706;
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --transition: all 0.25s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+    overflow-x: hidden;
+}
+
+.container { max-width: 1400px; margin: 0 auto; padding: 0 56px; }
+
+/* 네비게이션 */
+.navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 18px 56px;
+    background: rgba(255, 255, 255, 0.72);
+    transition: var(--transition);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+}
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.90);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+.nav-container {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo {
+    font-size: 1.5rem; font-weight: 700; color: var(--kakao-black);
+    text-decoration: none; letter-spacing: -0.02em;
+}
+.nav-menu { display: flex; list-style: none; gap: 48px; }
+.nav-menu a {
+    text-decoration: none; color: var(--text-sub);
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em;
+    transition: var(--transition);
+}
+.nav-menu a:hover { color: var(--kakao-black); }
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+.hamburger span { width: 24px; height: 2px; background: var(--kakao-black); transition: var(--transition); }
+
+/* 히어로 섹션 */
+.hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; background: var(--kakao-yellow);
+}
+.hero-glow {
+    position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
+    width: 860px; height: 520px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.18) 55%, transparent 70%);
+    filter: blur(40px); pointer-events: none; animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+.hero-content { text-align: center; z-index: 1; }
+.hero-title {
+    font-size: clamp(2.6rem, 7vw, 4.6rem); font-weight: 900;
+    letter-spacing: -0.02em; margin-bottom: 24px; line-height: 1.1; color: var(--kakao-black);
+}
+.hero-title .korean { font-weight: 900; }
+.hero-tagline {
+    font-size: 0.9rem; color: rgba(25,25,25,0.72); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 16px; display: inline-block;
+    padding: 10px 14px; border-radius: 999px;
+    background: rgba(255,255,255,0.55); border: 1px solid rgba(0,0,0,0.06);
+}
+.hero-sub { font-size: 0.85rem; color: rgba(25,25,25,0.75); letter-spacing: 0.04em; font-weight: 600; }
+.scroll-indicator {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.scroll-indicator span { font-size: 0.75rem; color: rgba(25,25,25,0.65); letter-spacing: 0.1em; text-transform: uppercase; }
+.scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, rgba(25,25,25,0.55), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* 섹션 공통 */
+section { padding: 96px 0; }
+.section-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px; }
+.section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; margin-bottom: 60px; letter-spacing: -0.02em; }
+
+/* About 섹션 */
+.about { background: var(--bg); border-top: 1px solid var(--border); }
+.about-content { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; margin-bottom: 80px; }
+.about-intro h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; line-height: 1.4; margin-bottom: 24px; letter-spacing: -0.02em; }
+.about-intro .highlight { color: var(--kakao-black); background: linear-gradient(transparent 60%, rgba(254,229,0,0.55) 60%); padding: 0 6px; border-radius: 10px; }
+.about-description { font-size: 1.05rem; color: var(--text-sub); line-height: 1.9; }
+.about-description strong { color: var(--kakao-black); }
+.about-stats { display: flex; flex-direction: column; gap: 40px; padding-top: 20px; }
+.stat-item { border-left: 4px solid var(--kakao-yellow); padding-left: 24px; }
+.stat-number { display: block; font-size: 2.5rem; font-weight: 700; color: var(--kakao-black); letter-spacing: -0.02em; }
+.stat-label { font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+
+/* 역량 */
+.capabilities { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.capability-item {
+    display: flex; gap: 24px; padding: 32px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-sm); transition: var(--transition);
+}
+.capability-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.capability-number { font-size: 0.85rem; color: var(--kakao-black); font-weight: 600; background: rgba(254,229,0,0.55); padding: 4px 10px; border-radius: 999px; }
+.capability-content h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--kakao-black); }
+.capability-content p { font-size: 0.9rem; color: var(--text-sub); line-height: 1.6; }
+
+/* Work 섹션 */
+.work { background: var(--bg-subtle); border-top: 1px solid var(--border); }
+.projects-list { display: flex; flex-direction: column; gap: 100px; }
+.project-item { padding-bottom: 80px; border-bottom: 1px solid var(--border); }
+.project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.project-index { font-size: 0.85rem; color: var(--kakao-black); font-weight: 600; background: rgba(254,229,0,0.70); padding: 6px 10px; border-radius: 999px; }
+.project-meta { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.project-category { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.project-period { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
+.project-contribution { font-size: 0.7rem; color: rgba(25,25,25,0.75); letter-spacing: 0.05em; margin-top: 0; background: rgba(255,255,255,0.75); border: 1px solid rgba(0,0,0,0.06); padding: 8px 10px; border-radius: 12px; }
+.project-name { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.02em; }
+.project-summary { font-size: 1rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 40px; max-width: 800px; }
+
+/* 프로젝트 강점/칩 */
+.project-strengths { margin: 18px 0 34px; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+.chip { display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.75); color: var(--kakao-black); font-size: 0.85rem; font-weight: 700; }
+
+/* 프로젝트 미디어 */
+.project-media { margin-bottom: 40px; }
+.media-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+.project-media .instagram-media { background: var(--bg-card) !important; border-radius: var(--radius-md) !important; flex: 1; min-width: 280px; border: 1px solid var(--border) !important; box-shadow: var(--shadow-sm); }
+.media-links { margin-top: 14px; }
+.media-link { display: inline-block; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.75); color: var(--kakao-black); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+
+/* 프로젝트 상세 그리드 */
+.project-details-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.detail-card.role { grid-column: 1 / -1; }
+.detail-card { padding: 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition); }
+.detail-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.detail-label { display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 16px; }
+.detail-card.problem .detail-label { color: var(--problem-color); }
+.detail-card.solution .detail-label { color: var(--solution-color); }
+.detail-card.result .detail-label { color: var(--result-color); }
+.detail-card.insight .detail-label { color: var(--insight-color); }
+.detail-card.role .detail-label, .detail-card.context .detail-label, .detail-card.key-insight .detail-label, .detail-card.hook .detail-label { color: var(--kakao-black); }
+.detail-card.strategy .detail-label, .detail-card.execution .detail-label { color: var(--solution-color); }
+.insight-quote { margin: 0 0 10px 0; padding: 14px 16px; border-radius: 16px; background: rgba(254,229,0,0.35); border: 1px solid rgba(0,0,0,0.06); color: var(--kakao-black); font-weight: 900; }
+.context-bullets { margin-top: 10px; color: var(--text-sub); }
+.result-qual { margin-top: 16px; padding-top: 16px; border-top: 1px dashed rgba(0,0,0,0.12); }
+.result-qual ul { list-style: none; display: grid; gap: 10px; }
+.result-qual li { color: var(--text-sub); padding-left: 16px; position: relative; }
+.result-qual li::before { content: '•'; position: absolute; left: 0; color: var(--text-muted); }
+.detail-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.detail-card li { font-size: 0.9rem; color: var(--text-sub); padding-left: 16px; position: relative; line-height: 1.5; }
+.detail-card li::before { content: '•'; position: absolute; left: 0; color: var(--text-muted); }
+
+/* Result 메트릭 */
+.result-metrics { display: flex; gap: 24px; flex-wrap: wrap; }
+.metric { flex: 1; min-width: 100px; text-align: center; padding: 16px; background: rgba(22,163,74,0.08); border: 1px solid rgba(22,163,74,0.16); border-radius: 14px; }
+.metric-value { display: block; font-size: 1.5rem; font-weight: 700; color: var(--result-color); margin-bottom: 4px; }
+.metric-label { font-size: 0.75rem; color: var(--text-muted); }
+.detail-card.insight p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.7; }
+.detail-card.insight strong { color: var(--insight-color); }
+
+/* Contact 섹션 */
+.contact { background: var(--bg-subtle); border-top: 1px solid var(--border); position: relative; overflow: hidden; }
+.contact-glow { position: absolute; bottom: -220px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse at center, rgba(254,229,0,0.55) 0%, rgba(254,229,0,0.12) 45%, transparent 70%); filter: blur(70px); pointer-events: none; opacity: 0.5; }
+.contact-content { position: relative; z-index: 1; max-width: 600px; }
+.contact-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 24px; letter-spacing: -0.02em; line-height: 1.1; }
+.contact-description { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 48px; line-height: 1.8; }
+.contact-links { display: flex; flex-direction: column; gap: 24px; }
+.contact-link { display: flex; flex-direction: column; gap: 4px; text-decoration: none; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition); }
+.contact-link:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.link-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.link-value { font-size: 1.1rem; color: var(--kakao-black); font-weight: 500; }
+
+/* 푸터 */
+.footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; background: var(--bg); }
+.footer p { font-size: 0.85rem; color: var(--text-muted); }
+
+/* 반응형 - 태블릿 */
+@media (max-width: 1024px) {
+    .container { padding: 0 28px; }
+    .navbar { padding: 14px 28px; }
+    .about-content { grid-template-columns: 1fr; gap: 60px; }
+    .about-stats { flex-direction: row; justify-content: flex-start; gap: 60px; }
+    .capabilities { grid-template-columns: 1fr; }
+    .project-details-grid { grid-template-columns: 1fr; }
+}
+
+/* 반응형 - 모바일 */
+@media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .navbar { padding: 12px 18px; }
+    .nav-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); flex-direction: column; align-items: center; justify-content: center; gap: 32px; transform: translateX(100%); transition: var(--transition); }
+    .nav-menu.active { transform: translateX(0); }
+    .nav-menu a { font-size: 1.5rem; }
+    .hamburger { display: flex; z-index: 1001; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+    .hero-glow { width: 400px; height: 200px; }
+    section { padding: 80px 0; }
+    .about-stats { flex-direction: column; gap: 24px; }
+    .project-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .project-meta { align-items: flex-start; gap: 4px; }
+    .result-metrics { flex-direction: column; gap: 12px; }
+    .metric { min-width: auto; }
+    .chip { font-size: 0.82rem; padding: 7px 10px; }
+}
+
+@media (max-width: 480px) {
+    .hero-title { font-size: 2rem; }
+    .hero-tagline { font-size: 0.65rem; letter-spacing: 0.1em; }
+    .stat-number { font-size: 2rem; }
+    .project-name { font-size: 1.3rem; }
+    .detail-card { padding: 20px; }
+}
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">이난주</a>
+            <ul class="nav-menu">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section id="home" class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Brand Maker : <span class="korean">이난주</span></h1>
+            <p class="hero-tagline">CONTENTS · DATA-BASED STRATEGY · AI</p>
+            <p class="hero-sub">F&F · 브랜드 마케팅 · 4년+</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About 섹션 -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-label">ABOUT</div>
+            <div class="about-content">
+                <div class="about-intro">
+                    <h2><span class="highlight">뉴미디어 채널과 콘텐츠</span>로<br>브랜드를 성장시키는 IMC 마케터</h2>
+                    <p class="about-description">
+                        라이프스타일 패션 브랜드에서 IMC 마케터로 일하며 
+                        <strong>브랜딩과 매출</strong>이라는 두 축을 실질적인 성과로 연결해왔습니다.
+                        데이터와 감각을 균형감 있게 다루며 팀과 속도를 맞춰가는 방식으로,
+                        브랜드의 성장은 팀 전체가 목표를 함께 향할 때 가능하다고 믿습니다.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">4+</span>
+                        <span class="stat-label">Years at F&F</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500만</span>
+                        <span class="stat-label">Max Contents View</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">손익분기점 달성</span>
+                        <span class="stat-label">신규 브랜드</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 핵심 역량 -->
+            <div class="capabilities">
+                <div class="capability-item">
+                    <div class="capability-number">01</div>
+                    <div class="capability-content">
+                        <h4>IMC 전략 & 브랜드 성장</h4>
+                        <p>SNS·PR·셀럽·팝업·광고를 하나의 메시지로 통합, 6개월 만에 인지도·매출 2배 성장</p>
+                    </div>
+                </div>
+                <div class="capability-item">
+                    <div class="capability-number">02</div>
+                    <div class="capability-content">
+                        <h4>데이터 기반 퍼포먼스</h4>
+                        <p>CTR/CVR/ROAS 분석, AI 툴 활용으로 광고비 20% 절감 + 전환율 상승</p>
+                    </div>
+                </div>
+                <div class="capability-item">
+                    <div class="capability-number">03</div>
+                    <div class="capability-content">
+                        <h4>온·오프라인 리테일</h4>
+                        <p>더현대·EQL·롯데월드몰 팝업 A to Z, 검색 유입 150~400% 증가</p>
+                    </div>
+                </div>
+                <div class="capability-item">
+                    <div class="capability-number">04</div>
+                    <div class="capability-content">
+                        <h4>AI 기반 업무 자동화</h4>
+                        <p>SQL 기반 KPI 대시보드 구축, 회의 자료 제작 시간 3배 단축</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work 섹션 -->
+    <section id="work" class="work">
+        <div class="container">
+            <div class="section-label">WORK</div>
+            <h2 class="section-title">Selected Projects</h2>
+            
+            <div class="projects-list">
+                <!-- 프로젝트 1: 듀베티카 -->
+                <article class="project-item" id="duvetica">
+                    <div class="project-header">
+                        <div class="project-index">01</div>
+                        <div class="project-meta">
+                            <span class="project-category">셀럽/인플루언서 · IMC · PM</span>
+                            <span class="project-period">2024.09 - 2025.02</span>
+                            <span class="project-contribution">기여도: 기획 80% · 실행 100% · 분석 100%</span>
+                        </div>
+                    </div>
+                    <h3 class="project-name">듀베티카 24FW 셀럽/인플루언서 협업 프로젝트</h3>
+                    <p class="project-summary">
+                        <strong>[PM]</strong> 리브랜딩 이후 듀베티카가 가진 <strong>패딩 헤리티지/프리미엄 무드</strong>를 대중에게 확산시키고,
+                        <strong>'NEXT 몽클레르'</strong> 포지셔닝을 만들기 위해
+                        셀럽(김지원) → 인플루언서 → 커뮤니티 → 실수요층으로 이어지는 <strong>IMC 메시지 통합</strong>을 설계·실행한 프로젝트입니다.
+                    </p>
+
+                    <!-- 강점 한눈에 보기 -->
+                    <div class="project-strengths">
+                        <div class="chips">
+                            <span class="chip">IMC 메시지 통합</span>
+                            <span class="chip">타깃/포지셔닝 재정의</span>
+                            <span class="chip">셀럽→인플루언서 연결</span>
+                            <span class="chip">OOH→바이럴 설계</span>
+                            <span class="chip">커뮤니티 시딩</span>
+                            <span class="chip">데이터 기반 검증</span>
+                            <span class="chip">조직 얼라인/설득</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 인스타그램 임베드 -->
+                    <div class="project-media">
+                        <div class="media-grid">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DC1aOJfvU8P/" data-instgrm-version="14" style="background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:16px; margin:0; max-width:400px; min-width:280px; padding:0; width:100%;">
+                                <a href="https://www.instagram.com/reel/DC1aOJfvU8P/" target="_blank" style="display:block; padding:18px; text-align:center; color:#191919; font-weight:700;">📹 영상 보기</a>
+                            </blockquote>
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DC30CKDSmN8/" data-instgrm-version="14" style="background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:16px; margin:0; max-width:400px; min-width:280px; padding:0; width:100%;">
+                                <a href="https://www.instagram.com/p/DC30CKDSmN8/" target="_blank" style="display:block; padding:18px; text-align:center; color:#191919; font-weight:700;">📷 포스트 보기</a>
+                            </blockquote>
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DDRExvrSHyu/" data-instgrm-version="14" style="background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:16px; margin:0; max-width:400px; min-width:280px; padding:0; width:100%;">
+                                <a href="https://www.instagram.com/p/DDRExvrSHyu/" target="_blank" style="display:block; padding:18px; text-align:center; color:#191919; font-weight:700;">📷 포스트 보기</a>
+                            </blockquote>
+                        </div>
+                        <div class="media-links">
+                            <a class="media-link" href="https://www.instagram.com/minyoung_aori/" target="_blank" rel="noreferrer">인플루언서 계정: minyoung_aori</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-details-grid">
+                        <div class="detail-card role">
+                            <span class="detail-label">👤 My Role (기여도 기반)</span>
+                            <ul>
+                                <li><strong>기획 (80%)</strong>: 타깃(당당한 3040 도시여성) 재정의, 'NEXT 몽클레르' 포지셔닝 논리 정리, 메시지 통합 구조 설계</li>
+                                <li><strong>실행 (100%)</strong>: 셀럽(김지원) 활용 앵글/PR 구체화, 오프라인 이벤트·릴레이 팝업·옥외광고·프로모션·바이럴까지 연결</li>
+                                <li><strong>분석 (100%)</strong>: 노출→인스타→커뮤니티→실수요 침투 퍼널로 성과 추적(검색/조회/매출), 개선 포인트 도출</li>
+                                <li><strong>조직 설득/얼라인</strong>: 키 아이템 메이킹을 위해 '단기 매출'보다 '브랜딩' 우선의 운영전략을 내부 부서에 설득</li>
+                            </ul>
+                        </div>
+
+                        <div class="detail-card context">
+                            <span class="detail-label">🧭 Why (맥락/왜 풀어야 했나)</span>
+                            <p>
+                                듀베티카는 '패딩'에 대한 정통성과 헤리티지, 일부 프리미엄 이미지를 보유했지만 이를 더 많은 대중에게 전파해
+                                <strong>인지도·신규 유입</strong>을 만들 필요가 있었습니다.
+                                목표는 몽클레르의 무드를 원하지만 더 리즈너블한 선택지를 찾는 고객에게 <strong>대체 해답</strong>으로 제시되는 것.
+                            </p>
+                            <p class="context-bullets">
+                                <strong>진짜 중요했던 것</strong>: 타깃 재정의(당당한 3040 도시여성) · 포지셔닝(유사 무드/합리적 가격) · 첫 인상(김지원 착장) · 확산(패션 매체/커뮤니티/OOH)
+                            </p>
+                        </div>
+                        <div class="detail-card problem">
+                            <span class="detail-label">🔍 Problem (문제 정의)</span>
+                            <ul>
+                                <li>브랜드 인지도 개선</li>
+                                <li>아웃도어로 치우친 콘텐츠/텍스트 톤앤매너 재정립</li>
+                                <li>마케팅 타깃 연령을 '30대 여성' 중심으로 낮추기</li>
+                            </ul>
+                        </div>
+
+                        <div class="detail-card key-insight">
+                            <span class="detail-label">💡 Key Insight (해결의 단서)</span>
+                            <p class="insight-quote"><strong>"노출은 최대화, 브랜드 가치 납득은 5명만 타겟한다."</strong></p>
+                            <ul>
+                                <li>프리미엄 브랜드일수록 '작지만 실수요 커뮤니티'가 납득하면 입소문으로 자연 확산된다</li>
+                                <li>셀럽은 '첫 인상'과 신뢰를 만들고, 인플루언서는 '생활 맥락'과 구매 이유를 확장한다</li>
+                                <li>OOH를 단순 노출이 아닌, 고객의 브랜드 경험 확장으로 설계하기 위해, QR로 팝업 연계 활동, OOH를 활용한 2차 매체 바이럴 마케팅을 기획했다.</li>
+                            </ul>
+                        </div>
+
+                        <div class="detail-card strategy">
+                            <span class="detail-label">🧩 Strategy (전략)</span>
+                            <ul>
+                                <li><strong>셀럽 앵커</strong>: '눈물의 여왕' 이슈로 화제였던 김지원의 '고급스럽고 당당한 여성' 이미지로 포지셔닝을 직관화</li>
+                                <li><strong>연결고리 설계</strong>: 셀럽 오프라인 행사 → 겨울 매출 기간 릴레이 팝업 → 인플루언서 확산으로 오피니언 리더 체인 생성</li>
+                                <li><strong>키 아이템 메이킹</strong>: 3040 커리어우먼 라이프스타일에 맞는 '가볍고, 어디에나 예쁘고, 실루엣 보정' 가능한 판쵸 스타일 중심으로 선택/설득</li>
+                            </ul>
+                        </div>
+
+                        <div class="detail-card execution">
+                            <span class="detail-label">🛠 Execution (실행)</span>
+                            <ul>
+                                <li>11~12월 성수·더현대 등 옥외광고 집행 + QR/매체 바이럴로 중첩 노출 및 진성 관심 고객 회수</li>
+                                <li>김지원 이미지를 활용할 수 있는 바이럴 앵글/PR 활동 구체화 및 확대</li>
+                                <li>옥외광고 → 인스타그램 → 커뮤니티 → 실수요 커뮤니티 침투로 이어지는 노출 전략 수립(주요 매체 연간 계약 포함)</li>
+                                <li>키 아이템 메이킹을 위해 내부 각 부서에 '매출'이 아닌 '브랜딩' 중심 운영전략 설득</li>
+                            </ul>
+                        </div>
+                        <div class="detail-card result">
+                            <span class="detail-label">📈 Result (증거/성과)</span>
+                            <div class="result-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">500만</span>
+                                    <span class="metric-label">셀럽 콘텐츠 조회수</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">4배</span>
+                                    <span class="metric-label">키 아이템 매출 증가</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">2배</span>
+                                    <span class="metric-label">연간 검색량 & 매출</span>
+                                </div>
+                            </div>
+                            <div class="result-qual">
+                                <ul>
+                                    <li><strong>여배우 패딩 이미지</strong> 확립 → "몽클레르 대체템"으로 언급</li>
+                                    <li><strong>IMC 전략 효용성</strong> 입증 → 전사 부서별 합의체 조직으로 연결</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="detail-card insight">
+                            <span class="detail-label">💭 Learnings (배움/다음)</span>
+                            <p><strong>배운 점</strong> — "디테일이 브랜드를 만든다." 비주얼 한 장, 포토부스 분위기, 셀럽 착장, 매장 조명, 릴스 컷 구성까지 모든 터치포인트를 하나의 문장처럼 연결할 때 전달력이 커진다는 것을 체감했습니다.</p>
+                            <p><strong>다음번 개선</strong> — 인지도 형성 이후에는 재고 관리 프로모션으로 전환하고, 브랜드 팬덤/실수요 커뮤니티의 피드백을 적극 반영할 수 있는 시스템을 마련해 지속 가능한 팬덤/재구매 흐름으로 전환하는 방향으로 운영계획을 수립했습니다.</p>
+                        </div>
+
+                        <div class="detail-card hook">
+                            <span class="detail-label">🎤 Interview Hooks (심층 질문 포인트)</span>
+                            <ul>
+                                <li><strong>유연한 리드</strong>: 시즌 이슈(첫눈 등) 흐름에 맞춰 '여왕' 이미지와 결합, 부정 이슈 리스크를 피하는 바이럴 운영</li>
+                                <li><strong>새로운 방식 생성</strong>: 셀럽 옥외광고를 바이럴로 전환하는 구조(OOH→SNS→커뮤니티) 설계 및 검증</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact 섹션 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="section-label">CONTACT</div>
+                <h2 class="contact-title">Let's Work<br>Together</h2>
+                <p class="contact-description">
+                    <strong>뉴미디어 채널과 콘텐츠로 브랜드를 성장시키는 IMC 마케터</strong>입니다.<br>
+                    브랜드 커뮤니케이션 전략 수립부터 통합 마케팅, 국내외 협업 캠페인까지<br>
+                    채널 × 콘텐츠 × 데이터를 연결해 브랜드를 빌드업합니다.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com" class="contact-link">
+                        <span class="link-label">Email</span>
+                        <span class="link-value">your.email@example.com</span>
+                    </a>
+                    <a href="tel:010-0000-0000" class="contact-link">
+                        <span class="link-label">Phone</span>
+                        <span class="link-value">010-0000-0000</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="contact-glow"></div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 이난주. Brand Marketer at F&F.</p>
+        </div>
+    </footer>
+
+    <!-- 인스타그램 임베드 스크립트 -->
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script>
+// 모바일 메뉴 토글
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+// 메뉴 클릭 시 닫기
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+
+// 스크롤 시 네비게이션 스타일 변경
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// 인스타그램 임베드 렌더링 보장
+window.addEventListener('load', () => {
+    if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
+        window.instgrm.Embeds.process();
+    }
+});
+
+// 부드러운 스크롤
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// 히어로 타이틀 애니메이션
+const heroTitle = document.querySelector('.hero-title');
+if (heroTitle) {
+    heroTitle.style.opacity = '0';
+    heroTitle.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+        heroTitle.style.transition = 'opacity 1s ease, transform 1s ease';
+        heroTitle.style.opacity = '1';
+        heroTitle.style.transform = 'translateY(0)';
+    }, 300);
+}
+
+// 태그라인 애니메이션
+const heroTagline = document.querySelector('.hero-tagline');
+if (heroTagline) {
+    heroTagline.style.opacity = '0';
+    setTimeout(() => {
+        heroTagline.style.transition = 'opacity 1s ease';
+        heroTagline.style.opacity = '1';
+    }, 800);
+}
+    </script>
+</body>
+</html>
